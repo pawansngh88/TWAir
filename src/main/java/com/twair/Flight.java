@@ -12,6 +12,11 @@ public class Flight {
     private final Integer availableSeats;
     private Calendar departureTime;
     private Calendar arrivalTime;
+
+    public Map<ClassType, TravelClass> getTravelClassMap() {
+        return travelClassMap;
+    }
+
     private Map<ClassType, TravelClass> travelClassMap = new HashMap<>();
 
 

@@ -28,17 +28,19 @@
     </form>
     <br/><br/>
     <table border="1">
-        <th>Flight Number</th>
+        <th>number</th>
         <th>From</th>
         <th>To</th>
         <th>Departure Time</th>
         <th>Arrival Time</th>
-        <tr th:each="flight:${flights}">
-           <td th:text="${flight.number}"></td>
-           <td th:text="${flight.source}"></td>
-           <td th:text="${flight.destination}"></td>
-           <td th:text="${flight.departureTime.getTime()}"></td>
-           <td th:text="${flight.arrivalTime.getTime()}"></td>
+        <th>Flight Cost</th>
+        <tr th:each="flightCost:${flights}">
+           <td th:text="${flightCost.flight.number}"></td>
+           <td th:text="${flightCost.flight.source}"></td>
+           <td th:text="${flightCost.flight.destination}"></td>
+           <td th:text="${flightCost.flight.departureTime.getTime()}"></td>
+            <td th:text="${flightCost.flight.arrivalTime.getTime()}"></td>
+            <td th:text="${flightCost.totalCost}"></td>
         </tr>
     </table>
 </div>

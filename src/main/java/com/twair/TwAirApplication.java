@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @EnableAutoConfiguration
@@ -27,7 +28,12 @@ public class TwAirApplication {
 			matchingFlights = matchingFlights.byDeparture(searchForm.getDepartureDate());
 			matchingFlights = matchingFlights.byClassType(searchForm.getClassType());
 			matchingFlights = matchingFlights.byAvailableSeats(searchForm.getClassType(), searchForm.getNumberSeats());
-			model.addAttribute("flights", matchingFlights.getFlightList());
+			List<FlightCost> flightCosts =new ArrayList<FlightCost>();
+			for (Flight f: matchingFlights.getFlightList()) {
+				FlightCost flightCost = new FlightCost(f, f.getTravelClassMap().get(searchForm.getClassType()).getTotalPrice()*searchForm.getNumberSeats());
+				flightCosts.add(flightCost);
+			}
+			model.addAttribute("flights", flightCosts);
 		}catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("flights", new ArrayList());

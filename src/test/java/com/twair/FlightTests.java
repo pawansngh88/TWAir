@@ -30,7 +30,7 @@ public class FlightTests {
         departure = new GregorianCalendar(2016,3,10, 9, 10, 0);
         arrival = new GregorianCalendar(2016,3,10, 10, 10, 0);
         travelClasses = new ArrayList();
-        travelClasses.add(new TravelClass(ClassType.ECONOMY, 30));
+        travelClasses.add(new TravelClass(ClassType.ECONOMY, 30, 6000.0, 0.0));
 
         mockEconomyClass = mock(TravelClass.class);
         mockTravelClasses = new ArrayList();
@@ -105,6 +105,11 @@ public class FlightTests {
     public void shouldReturnFalseIfThereAreNoSeatsOfThatClass() throws Exception {
         Flight flight = new Flight("F001", source, dest, plane, departure, arrival, travelClasses);
         Assert.assertFalse(flight.hasClass(ClassType.BUSINESS));
+    }
+    public void shouldReturnTotalCostOfFlight() throws Exception {
+        Integer numberOfSeats = 2;
+        Flight flight = new Flight("F001", source, dest, plane, departure, arrival, travelClasses);
+        Assert.assertFalse(flight.canBook(ClassType.BUSINESS, numberOfSeats));
     }
 
 }
